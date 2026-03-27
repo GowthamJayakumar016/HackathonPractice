@@ -1,0 +1,23 @@
+﻿@page
+@model razorApi.Pages.Employees.IndexModel
+
+<h1>Bank employee</h1>
+<table border="1">
+	<tr>
+		<th> Name</th>
+		<th> Department</th>
+		<th> Salary</th>
+		<th> Action</th>
+	</tr>
+	@foreach(var emp in Model.Employees)
+	{
+		<tr>
+			<td>@emp.Name</td>
+			<td>@emp.Department</td>
+			<td>@emp.Salary</td>
+			<a herf="\Employee\edit?id=@emp.Id">Edit</a>
+			<a herf="\Employee\delete?id=@emp.Id">Delete</a>
+
+		</tr>
+	}
+</table>

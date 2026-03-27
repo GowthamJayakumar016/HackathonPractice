@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="StudentManagement.Shared/StudentManagement.Shared.csproj" Id="82bea4b9-5f38-4cf4-9bcf-0159b4f5c76f" />
+  <Project Path="Studentmanagement/Studentmanagement.Client/Studentmanagement.Client.csproj" />
+  <Project Path="Studentmanagement/Studentmanagement/Studentmanagement.csproj" />
+  <Project Path="StudentTest/StudentTest.csproj" Id="61fe1db9-5f2d-4633-a690-a0a303c704c0" />
+</Solution>

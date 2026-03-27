@@ -1,0 +1,11 @@
+﻿@page "/Index"
+@rendermode InteractiveServer
+
+<button @onclick="() => ShowNumber(5)">Click</button>
+
+@code {
+    void ShowNumber(int num)
+    {
+        Console.WriteLine(num);
+    }
+}
