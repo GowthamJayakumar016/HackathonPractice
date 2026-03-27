@@ -1,0 +1,6 @@
+@iis_sampleconnect_HostAddress = http://localhost:5179
+
+GET {{iis_sampleconnect_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

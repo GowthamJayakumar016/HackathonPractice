@@ -1,0 +1,94 @@
+﻿@page "/student/edit/{id:int}"
+
+@using Studentmanagement.Models
+@inject NavigationManager navigation;
+@using Studentmanagement.Client.Services;;
+@inject IJSRuntime JsRuntime
+@rendermode InteractiveServer 
+@using Microsoft.AspNetCore.Components.Forms
+
+<h3>Update Student</h3>
+
+<hr />
+<div class="row">
+	<div class="col-md-12">
+		<EditForm Model="@studobj" OnValidSubmit="UpdateStudent" FormName="Updatestudent">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+            <div class="col-md-12">
+                <div class="row">
+                     <div class="col-md-6">
+                         <div class="form-group">
+                             <label class="control-label">First Name</label>
+                              <InputText class="form-control" @bind-Value="@studobj.Firstname"/>
+                              <ValidationMessage For="@(() => studobj.Firstname)" />
+                         </div>
+                         <div class="form-group">
+                             <label class="control-label">Middle Name</label>
+                              <InputText class="form-control" @bind-Value="@studobj.Middlename"/>
+                              <ValidationMessage For="@(() => studobj.Middlename)" />
+                         </div>
+                         <div class="form-group">
+                             <label class="control-label">Last Name</label>
+                              <InputText class="form-control" @bind-Value="@studobj.Lastname"/>
+                              <ValidationMessage For="@(() => studobj.Lastname)" />
+                         </div>
+                         <div class="form-group">
+                             <label class="control-label">Email</label>
+                              <InputText class="form-control" @bind-Value="@studobj.EmailAddress"/>
+                              <ValidationMessage For="@(() => studobj.EmailAddress)" />
+                         </div>
+                         <div class="form-group">
+                             <label class="control-label">Password</label>
+                              <InputText class="form-control" @bind-Value="@studobj.Password"/>
+                              <ValidationMessage For="@(() => studobj.Password)" />
+                         </div>
+                         <div class="form-group">
+                             <label class="control-label">PhoneNumber</label>
+                              <InputNumber class="form-control" @bind-Value="@studobj.PhoneNumber"/>
+                              <ValidationMessage For="@(() => studobj.PhoneNumber)" />
+                         </div>
+                         <div class="form-group">
+                             <label class="control-label">Country</label>
+                              <InputText  class="form-control" @bind-Value="@studobj.Country"/>
+                              <ValidationMessage For="@(() => studobj.Country)" />
+                         </div>
+                          <div class="form-group mt-4">
+                              <button type="submit" class="btn btn-primary">Save Student</button>
+                              <button type="button" @onclick="()=>Cancel()" class="btn btn-danger">Back to List</button>
+                          </div>
+                     </div>
+                </div>
+             </div>
+        </EditForm>
+       
+	</div>
+</div>
+
+@code{
+    [SupplyParameterFromForm]
+    public Student studobj { get; set; } = new Student();
+
+    [Parameter]
+    public int id { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadStudent();
+    }
+    public async Task LoadStudent()
+    {
+        studobj = await StudentService.GetStudentsByIdAsync(id);
+    }
+
+
+    protected async Task UpdateStudent()
+    {
+        var result = await StudentService.UpdateStudentAsync(studobj);
+        navigation.NavigateTo("/students-list");
+    }
+    public void Cancel()
+    {
+        navigation.NavigateTo("/students-list");
+    }
+}

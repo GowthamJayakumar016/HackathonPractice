@@ -1,0 +1,6 @@
+@pprojectjwt_HostAddress = http://localhost:5134
+
+GET {{pprojectjwt_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
